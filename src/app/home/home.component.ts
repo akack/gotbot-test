@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
           this.next = true;
           setTimeout(() => {
             this.next = false;
-          }, 1000);
+          }, 500);
 
           if (this.user.mobile !== '') {
             this.result = {

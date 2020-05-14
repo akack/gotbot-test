@@ -48,4 +48,16 @@ router.post('/user', (req, res) => {
   });
 });
 
+router.post('/getUserDetails', (req, res) => {
+  let userReqData = req.body;
+  User.findOne({ email: userReqData.email }, (err, userDBdata) => {
+    console.log('User Data: ', userDBdata);
+    if (userDBdata != undefined) {
+      res.status(404).send('User not found');
+    } else {
+      res.status(200).send({ userDBdata });
+    }
+  });
+});
+
 module.exports = router;

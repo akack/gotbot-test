@@ -1,0 +1,68 @@
+<div class="form">
+  <div class="alert alert-success" role="alert" *ngIf="next">
+    <div class="alert-items">
+      <div class="alert-item static">
+        <div class="alert-icon-wrapper">
+          <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+        </div>
+        <span class="alert-text">Successfully added to DB.</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!submitted">
+    <h5>Fill Details</h5>
+    <form clrStepper #contactForm="ngForm">
+      <clr-stepper-panel ngModelGroup="contact">
+        <clr-step-title>Contact</clr-step-title>
+        <clr-step-content>
+          <clr-input-container>
+            <label>Email</label>
+            <input clrInput name="email" [(ngModel)]="email"  email required />
+          </clr-input-container>
+          <button clrStepButton="next" [disabled]="!validateEmail(email)" (click)="newUser()">next</button>
+        </clr-step-content>
+      </clr-stepper-panel>
+
+      <clr-stepper-panel ngModelGroup="name">
+        <clr-step-title>Details</clr-step-title>
+        <clr-step-content>
+          <clr-input-container>
+            <label>Name</label>
+            <input clrInput  name="name" [(ngModel)]="name"  required />
+          </clr-input-container>
+          <button clrStepButton="next" [disabled]="!name" (click)="newUser()">next</button>
+        </clr-step-content>
+      </clr-stepper-panel>
+
+      <clr-stepper-panel ngModelGroup="tel">
+        <clr-step-title>Mobile</clr-step-title>
+        <clr-step-content>
+          <clr-input-container>
+            <label>Mobile</label>
+            <input clrInput  name="mobile" pattern="[0-9]{10}" [(ngModel)]="mobile" maxlength="10" required />
+          </clr-input-container>
+          <button clrStepButton="submit" [disabled]="!validateMobile(mobile)"  (click)="newUser()">submit</button>
+        </clr-step-content>
+      </clr-stepper-panel>
+    </form>
+  </div>
+</div>
+
+<div class="details" *ngIf="submitted">
+  <h5>User Details</h5>
+  <table>
+    <tr>
+      <td>Email</td>
+      <td>{{result.email}}</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>{{result.name}}</td>
+    </tr>
+    <tr>
+      <td>Mobile</td>
+      <td>{{result.mobile}}</td>
+    </tr>
+  </table>
+  <button (click)="reset()">Start Over</button>
+</div>

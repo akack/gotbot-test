@@ -1,0 +1,18 @@
+.form {
+  margin-top: 5em;
+}
+.form h5 {
+  background-color: #1976d2;
+  padding: 15px;
+  color: white;
+  margin-bottom: 1em;
+}
+.details h5 {
+  background-color: #1976d2;
+  padding: 15px;
+  color: white;
+}
+.details table{
+  margin-bottom: 1em;
+  margin-top: 1em;
+}

@@ -7,7 +7,8 @@ import axios from 'axios';
   providedIn: 'root'
 })
 export class DataService {
-  public apiURL = 'http://localhost:3000/';
+  public postUrl = 'http://localhost:3000/server/user';
+  private getUrl = 'http://localhost:3000/server/getUserDetails';
   constructor(private http: HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
@@ -15,6 +16,10 @@ export class DataService {
     })
   }
   AddNewUser(user: User) {
-    return this.http.post<any>(this.apiURL + 'server/user', JSON.stringify(user), this.httpOptions);
+    return this.http.post<any>(this.postUrl, JSON.stringify(user), this.httpOptions);
+  }
+
+  getUserDetails(email: any) {
+    return this.http.get<any>(`${this.getUrl}/${email}`);
   }
 }

@@ -13,6 +13,11 @@
   color: white;
 
 }
+.btn-st {
+  background-color: #1976d2;
+  padding: 15px;
+  color: white;
+}
 .details table{
   margin-bottom: 1em;
   margin-top: 1em;

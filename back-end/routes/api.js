@@ -48,14 +48,13 @@ router.post('/user', (req, res) => {
   });
 });
 
-router.post('/getUserDetails', (req, res) => {
-  let userReqData = req.body;
-  User.findOne({ email: userReqData.email }, (err, userDBdata) => {
-    console.log('User Data: ', userDBdata);
-    if (userDBdata != undefined) {
-      res.status(404).send('User not found');
+router.get('/getUserDetails/:email', (req, res) => {
+ let email = req.params.email;
+  User.findOne({ email: email }, (err, result) => {
+    if (result === undefined || result === null) {
+      res.status(404).send(`User with this email ${email} is not registered.`);
     } else {
-      res.status(200).send({ userDBdata });
+      res.status(200).send({ result });
     }
   });
 });

@@ -52,17 +52,31 @@ export class HomeComponent implements OnInit {
           }, 1000);
 
           if (this.user.mobile !== '') {
-            this.submitted = true;
             this.result = {
               name: res.userReqData.name,
               email: res.userReqData.email,
               mobile: res.userReqData.mobile
             };
+            this.getUserDetails(res.userReqData.email);
+            this.submitted = true;
           }
         }, err => {
           console.log('Error found:', err);
         }
       );
+  }
+
+  getUserDetails(email) {
+    this.dataService.getUserDetails(email)
+    .subscribe(
+      res => {
+        this.result = {
+          name: res.result.name,
+          email: res.result.email,
+          mobile: res.result.mobile
+        };
+      }
+    );
   }
 
   reset() {
